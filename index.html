@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Formulário do Jogador</title>
+</head>
+<body>
+    <div class="bg-image">
+        <div class="container">
+            <header>
+                <div class="header-container">
+                    <i class="fa-solid fa-futbol"></i>
+                    <h1>Cadastro de Atleta</h1>
+                    <p>Preencha seus dados para entrar no nosso radar de talentos</p>    
+                </div>
+            </header>
+
+            <form action="">
+                <div class="form-container">
+                    <div class="data-container">
+                        <label for="name">Nome completo</label>
+                        <div class="input-field">
+                            <input type="text" class="form-control" id="name" placeholder="Seu nome completo">
+                        </div>
+                    </div>
+
+                    <div class="data-container">
+                        <label for="birthdate">Data de nascimento</label>
+                        <div class="input-field">
+                            <input type="date" class="form-control" id="birthdate">
+                        </div>
+                    </div>
+
+                    <div class="data-container">
+                        <label for="position">Posição</label>
+                        <div class="input-field">
+                            <select name="position" id="position" class="form-control">
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="goalkeeper">Goleiro</option>
+                                <option value="centerback">Zagueiro</option>
+                                <option value="fullback">Lateral</option>
+                                <option value="midfielder">Meio-campo</option>
+                                <option value="winger">Ponta/Extrema</option>
+                                <option value="striker">Centroavante</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="data-container">
+                        <label for="instagram">Instagram</label>
+                        <div class="input-with-icon">
+                            <span class="icon">@</span>
+                            <input type="text" class="form-control" id="instagram" placeholder="@seuusário">
+                        </div>
+                    </div>
+
+                    <div class="data-container">
+                        <label for="video">Youtube</label>
+                        <div class="input-with-icon">
+                            <span class="icon"><i class="fa-brands fa-youtube"></i></span>
+                            <input type="url" class="form-control" id="video" placeholder="https://youtube.com/...">
+                        </div>
+                    </div>
+
+                    <button type="submit">Enviar Cadastro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
