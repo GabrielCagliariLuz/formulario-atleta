@@ -76,6 +76,16 @@ h1 {
     padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--secondary-text-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    height: 42px;
+}
+
+input[type="date"].form-control,
+select.form-control {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
 }
 
 .input-with-icon {
