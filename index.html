@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <title>Formulário do Jogador</title>
+    <link rel="shortcut icon" href="imagens/favicon.png" type="image/x-icon">
 </head>
 <body>
     <div class="bg-image">
@@ -23,21 +24,21 @@
                     <div class="data-container">
                         <label for="name">Nome completo</label>
                         <div class="input-field">
-                            <input type="text" class="form-control" id="name" placeholder="Seu nome completo">
+                            <input type="text" class="form-control" id="name" placeholder="Seu nome completo" required>
                         </div>
                     </div>
 
                     <div class="data-container">
                         <label for="birthdate">Data de nascimento</label>
                         <div class="input-field">
-                            <input type="date" class="form-control" id="birthdate">
+                            <input type="date" class="form-control" id="birthdate" required>
                         </div>
                     </div>
 
                     <div class="data-container">
                         <label for="position">Posição</label>
                         <div class="input-field">
-                            <select name="position" id="position" class="form-control">
+                            <select name="position" id="position" class="form-control" required>
                                 <option value="" disabled selected>Selecione sua posição...</option>
                                 <option value="goalkeeper">Goleiro</option>
                                 <option value="centerback">Zagueiro</option>
@@ -53,7 +54,7 @@
                         <label for="instagram">Instagram</label>
                         <div class="input-with-icon">
                             <span class="icon">@</span>
-                            <input type="text" class="form-control" id="instagram" placeholder="@seuusário">
+                            <input type="text" class="form-control" id="instagram" placeholder="@seuusário" required>
                         </div>
                     </div>
 
@@ -61,8 +62,12 @@
                         <label for="video">Youtube</label>
                         <div class="input-with-icon">
                             <span class="icon"><i class="fa-brands fa-youtube"></i></span>
-                            <input type="url" class="form-control" id="video" placeholder="https://youtube.com/...">
+                            <input type="url" class="form-control" id="video" placeholder="https://youtube.com/..." required>
                         </div>
+                    </div>
+
+                    <div id="success-message" class="success-box">
+                        <i class="fa-solid fa-circle-check"></i> Cadastro recebido com sucesso!
                     </div>
 
                     <button type="submit">Enviar Cadastro</button>
@@ -70,5 +75,6 @@
             </form>
         </div>
     </div>
+    <script src="script.js" defer></script>
 </body>
 </html>
