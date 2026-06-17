@@ -81,6 +81,32 @@ h1 {
     height: 42px;
 }
 
+.form-control.sucesso {
+    border-color: #16a34a;
+    background-color: #f0fdf4;
+}
+
+.form-control.erro {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.input-with-icon.sucesso {
+    border-color: #16a34a;
+}
+
+.input-with-icon.erro {
+    border-color: #ef4444;
+}
+
+.input-with-icon.sucesso .form-control {
+    background-color: #f0fdf4;
+}
+
+.input-with-icon.erro .form-control {
+    background-color: #fef2f2;
+}
+
 input[type="date"].form-control,
 select.form-control {
     -webkit-appearance: none;
