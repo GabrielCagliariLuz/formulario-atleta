@@ -1,105 +1,102 @@
 const form = document.querySelector('form')
-form.addEventListener('submit', (event) =>{
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const birthdate = document.getElementById('birthdate').value;
-    const position = document.getElementById('position').value;
-    const instagram = document.getElementById('instagram').value;
-    const video = document.getElementById('video').value;
-
-    if (name.trim() === '') {
-        alert("Erro: O nome não pode ficar em branco.")
-        return;
-    }
-
-    if (birthdate === '') {
-        alert("Erro: Por favor, insira sua data de nascimento.")
-        return;
-    }
-
-    if (position === '') {
-        alert("Erro: Selecione sua posição no campo.")
-        return;
-    }
-
-    if (instagram.trim() === '') {
-        alert("Erro: Coloque seu usuário no Instagram.")
-        return;
-    }
-
-    if (video.trim() === '' || (!video.includes('youtube.com') && !video.includes('youtu.be'))) {
-        alert("Erro: Insira um link válido do youtube.")
-        return;
-    }
-    const successBox = document.getElementById('success-message');
-    successBox.style.display = 'block'
-    
-    form.reset();
-    setTimeout(function (){
-        successBox.style.display = 'none'
-    }, 3000)
-})
-
+const spans = document.querySelectorAll('.error')
 const nameInput = document.getElementById('name')
-
-nameInput.addEventListener('input', () =>{
-    if (nameInput.value.trim() !== '') {
-        nameInput.classList.remove('erro')
-        nameInput.classList.add('sucesso')
-    } else {
-        nameInput.classList.remove('sucesso')
-        nameInput.classList.add('erro')
-    }
-})
-
+const birthdateInput = document.getElementById('birthdate')
+const positionInput = document.getElementById('position')
+const instagramInput = document.getElementById('instagram') 
 const videoInput = document.getElementById('video')
-const videoContainer = videoInput.parentElement;
 
-videoInput.addEventListener('input', () =>{
-    const videoValue = videoInput.value.trim();
-    if (videoValue === '' || (!videoValue.includes('youtube.com') && !videoValue.includes('youtu.be'))) {
-        videoContainer.classList.remove('sucesso');
-        videoContainer.classList.add('erro');
+const instagramContainer = instagramInput.parentElement
+const videoContainer = videoInput.parentElement
+
+function mostrarErro(index, mensagem, elementoBorda){
+    spans[index].style.display = 'block'
+    spans[index].innerText = mensagem
+    elementoBorda.classList.remove('sucesso')
+    elementoBorda.classList.add('erro')
+}
+
+function removerErro(index, elementoBorda){
+    spans[index].style.display = 'none'
+    elementoBorda.classList.remove('erro')
+    elementoBorda.classList.add('sucesso')
+}
+
+nameInput.addEventListener('input', () => {
+    if (nameInput.value.trim() === '') {
+        mostrarErro(0, 'O nome não pode ficar em branco', nameInput)
     } else {
-        videoContainer.classList.remove('erro');
-        videoContainer.classList.add('sucesso');
+        removerErro(0, nameInput)
     }
 })
-
-const birthdateInput = document.getElementById('birthdate');
 
 birthdateInput.addEventListener('change', () =>{
-    if (birthdateInput.value !== '') {
-        birthdateInput.classList.remove('erro');
-        birthdateInput.classList.add('sucesso');
+    if (birthdateInput.value.trim() === '') {
+        mostrarErro(1, 'Insira sua data de nascimento', birthdateInput)
     } else {
-        birthdateInput.classList.remove('sucesso');
-        birthdateInput.classList.add('erro');
+        removerErro(1, birthdateInput)
     }
 })
-
-const positionInput = document.getElementById('position');
 
 positionInput.addEventListener('change', () =>{
-    if(positionInput.value !== '') {
-        positionInput.classList.remove('erro');
-        positionInput.classList.add('sucesso');
+    if (positionInput.value === '') {
+        mostrarErro(2, 'Selecione uma posição válida', positionInput)
     } else {
-        positionInput.classList.remove('sucesso');
-        positionInput.classList.add('erro');
+        removerErro(2, positionInput)
     }
 })
-
-const instagramInput = document.getElementById('instagram');
-const instagramContainer = instagramInput.parentElement;
 
 instagramInput.addEventListener('input', () =>{
-    if (instagramInput.value.trim() !== '') {
-        instagramContainer.classList.remove('erro')
-        instagramContainer.classList.add('sucesso')
+    if (instagramInput.value.trim() === '') {
+        mostrarErro(3, 'Preencha o seu usuário do Instagram', instagramContainer)
     } else {
-        instagramContainer.classList.remove('sucesso')
-        instagramContainer.classList.add('erro')
-
+        removerErro(3, instagramContainer)
     }
 })
+
+videoInput.addEventListener('input', () =>{
+    const videoValue = videoInput.value.trim()
+    if (videoValue === '' || (!videoValue.includes('youtube.com') && !videoValue.includes('youtu.be'))) {
+        mostrarErro(4, 'Insira um link válido do Youtube', videoContainer)
+    } else {
+        removerErro(4, videoContainer)
+    }
+})
+
+form.addEventListener('submit', (event) =>{
+    event.preventDefault();
+    let formValido = true
+
+    if (nameInput.value.trim() === '') { mostrarErro(0, 'O nome é obrigatório', nameInput); formValido = false}
+    if (birthdateInput.value === '') { mostrarErro(1, 'A data é obrigatória', birthdateInput); formValido = false}
+    if (positionInput.value === '') { mostrarErro(2, 'A posição é obrigatória', positionInput); formValido = false}
+    if (instagramInput.value.trim() === '') { mostrarErro(3, 'O instagram é obrigatório', instagramContainer); formValido = false}
+
+    const videoValue = videoInput.value.trim();
+    if (videoValue === '' || (!videoValue.includes('youtube.com') && !videoValue.includes('youtu.be'))) {
+        mostrarErro(4, 'O link do Youtube é obrigatório e deve ser válido', videoContainer)
+        formValido = false
+    }
+    
+    if (formValido) {
+        const submitBtn = form.querySelector('button[type="submit"]')
+        const originalText = submitBtn.innerText
+
+        submitBtn.disabled = true
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+        setTimeout(() => {
+            const successBox = document.getElementById('success-message')
+            successBox.style.display = 'block'
+
+            form.reset();
+            document.querySelectorAll('.sucesso').forEach(el => el.classList.remove('sucesso'))
+
+            submitBtn.disabled = false
+            submitBtn.innerText = originalText
+
+            setTimeout(() => { successBox.style.display = 'none'}, 3000)
+        }, 2000)
+    }
+})
+
